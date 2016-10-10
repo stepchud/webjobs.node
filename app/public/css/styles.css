@@ -1,0 +1,30 @@
+dt, dd {
+  float: left;
+  margin-bottom: 5px;
+  min-height: 20px;
+}
+dt {
+  clear: both;
+  width: 50px;
+}
+dd {
+  margin-left: 50px;
+  max-width: 85%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+table {
+  width: 100%;
+}
+table, th, td {
+  padding: 15px;
+}
+td {
+  text-align: center;
+}
+tr:nth-child(even) {
+  background: #CCC
+}
+h1, form, td {
+  text-align: center;
+}

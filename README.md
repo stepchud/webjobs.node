@@ -11,7 +11,13 @@ This is a sample work project for a job application. I solved the problem using 
 * Redis database for data storage
 * Promise-based architecture built on Bluebird
 
-The data model is represented by:
-* __Job__ represents the user's request and stores the URL, status, and result. Errors are also stored in the result.
-* __Queue__ manages jobs and creates workers to work them.
-* __Worker__ performs the request and saves the result.
+## Data Model
+__Job__ represents the user's request and stores the URL, status, and result. Errors are also stored in the result.
+__Queue__ manages jobs and creates workers to work them.
+__Worker__ performs the request and saves the result.
+
+## Installation
+Assuming you have node/npm installed, simply clone this repository. Run `npm install` and then `npm start` to start the server.
+
+## Configuration
+Default webserver port is 8000, websocket is 8111. You can change these by setting PORT and WS_PORT environment variables, respectively.

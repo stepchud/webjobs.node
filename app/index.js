@@ -18,12 +18,10 @@ Events.start(server);
 app.get('/jobs', function(req, res) { // list current jobs
   if (req.query.url) { // fetch specific job
     var job = new Models.Job(req.query.url);
-    debugger;
     job.fetch().then(function(job) {
       res.render('job', {job: job});
     })
     .catch(function(err) {
-      debugger;
       res.status(404).send('No job found.');
     });
   } else { // index jobs

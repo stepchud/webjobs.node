@@ -4,6 +4,7 @@
   "description": "Fetch URLs as Jobs",
   "main": "index.js",
   "dependencies": {
+    "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
     "bluebird": "^3.4.6",
     "browserify": "^13.1.0",

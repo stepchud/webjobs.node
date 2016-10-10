@@ -1,4 +1,5 @@
 var React = require('react');
+const WS_PORT = process.env.WS_PORT || 8111; // websockets
 
 var JobCreator = React.createClass({
   propTypes: {
@@ -28,7 +29,7 @@ var JobCreator = React.createClass({
       <form onSubmit={this.addJob}>
         <h4><label htmlFor='url'>Request A Url</label></h4>
         <div>
-          <input type='text' id='Url' value={this.state.url} onChange={this.changeUrl} placeholder='www.google.com' size="64" maxlength="256" /><br />
+          <input type='text' id='Url' value={this.state.url} onChange={this.changeUrl} placeholder='www.google.com' maxLength="256" size="64" /><br />
           <button type='submit'>Submit Job</button>
         </div>
       </form>
@@ -39,7 +40,7 @@ var JobCreator = React.createClass({
 var Jobs = React.createClass({
   componentDidMount: function() {
     var host = document.location.host.replace(/:.*/, '');
-    this.ws = new WebSocket('ws://' + host + ':8111');
+    this.ws = new WebSocket('ws://' + host + ':' + WS_PORT);
     this.ws.onmessage = this.onUpdate;
   },
   componentWillUnmount: function() {

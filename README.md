@@ -17,10 +17,14 @@ __Queue__ manages jobs and creates workers to work them.
 __Worker__ performs the request and saves the result.
 
 ## Installation
-Assuming you have node/npm installed, simply clone this repository. Run `npm install` and then `npm start` to start the server.
+Assuming you have node/npm installed, simply clone this repository. To start the server:
+
+    npm install
+    npm start
 
 ## Configuration
 Default webserver port is 8000, websocket is 8111. You can change these by setting PORT and WS_PORT environment variables, respectively.
 When changing WS_PORT, it is necessary to also update the bundled react script with browserify. For example, if you want to run on 8123 and 8124, you would run:
-`browserify -t [envify --WS_PORT 8124] -t [babelify] app/app.js -o app/public/bundle.js` and then
-`PORT=8123 WS_PORT=8124 npm start
+
+    browserify -t [envify --WS_PORT 8124] -t [babelify] app/app.js -o app/public/bundle.js
+    PORT=8123 WS_PORT=8124 npm start

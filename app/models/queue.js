@@ -14,7 +14,6 @@ function Queue() {
       console.log("Message '" + message + "' on channel '" + channel + "' arrived!")
       if (channel === 'job:created') {
         var key = message;
-        console.log('job created key=',key);
         jobs.then(function() {
           var w = new Worker();
           return w.work(key);
@@ -28,7 +27,6 @@ function Queue() {
     jobs = jobs.then(function() {
       Job.prototype.fetchAll(STATUS.none,STATUS.queued,STATUS.processing)
       .map(function(job) {
-        console.log('filtered job status: '+job.status+' for key '+job.key);
         var w = new Worker();
         return w.work(job.key);
       }, {concurrency: concurrencyLimit});

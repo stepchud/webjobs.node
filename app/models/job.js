@@ -50,8 +50,6 @@ function Job(key_or_url) {
   }
 
   this.save = function() {
-    console.log('saving job '+this.key+', stat='+this.status+', data=');
-    console.log(this.redisData());
     var self = this;
     return redisClient.hmsetAsync(this.key, this.redisData())
       .then(function() { return self; })

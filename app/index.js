@@ -45,5 +45,5 @@ var q = new Models.Queue();
 q.start(process.env.WORKERS || 5);
 
 server.on('request', app);
-server.listen(WS_PORT, function () { console.log('Listening on ' + server.address().port) });
+server.listen(WS_PORT, function () { console.log('websockets listening on ' + server.address().port) });
 app.listen(PORT);

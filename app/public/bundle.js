@@ -6,9 +6,8 @@ var Jobs = require('./views/jobs.jsx').Jobs;
 ReactDOM.render(React.createElement(Jobs, null), document.getElementById('content'));
 
 },{"./views/jobs.jsx":2,"react":172,"react-dom":3}],2:[function(require,module,exports){
-(function (process){
 var React = require('react');
-const WS_PORT = process.env.WS_PORT || 8111; // websockets
+const WS_PORT = 8124 || 8111; // websockets
 
 var JobCreator = React.createClass({
   displayName: 'JobCreator',
@@ -89,17 +88,45 @@ var Jobs = React.createClass({
     });
   },
   render: function () {
+    var results = React.createElement(
+      'h3',
+      null,
+      'Submit a url to begin'
+    );
     var jobs = this.state.jobs.map(function (job) {
       return React.createElement(Job, { key: job.key, url: job.url, status: job.status });
     });
-    if (!jobs.length) {
-      jobs = React.createElement(
-        'div',
+    if (jobs.length) {
+      results = React.createElement(
+        'table',
         null,
         React.createElement(
-          'h3',
+          'thead',
           null,
-          'Submit a url to begin'
+          React.createElement(
+            'tr',
+            null,
+            React.createElement(
+              'th',
+              null,
+              'URL'
+            ),
+            React.createElement(
+              'th',
+              null,
+              'Status'
+            ),
+            React.createElement(
+              'th',
+              null,
+              'View Results'
+            )
+          )
+        ),
+        React.createElement(
+          'tbody',
+          null,
+          jobs
         )
       );
     }
@@ -113,42 +140,7 @@ var Jobs = React.createClass({
         'Jobs'
       ),
       React.createElement(JobCreator, { onCreate: this.onCreate }),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'table',
-          null,
-          React.createElement(
-            'thead',
-            null,
-            React.createElement(
-              'tr',
-              null,
-              React.createElement(
-                'th',
-                null,
-                'URL'
-              ),
-              React.createElement(
-                'th',
-                null,
-                'Status'
-              ),
-              React.createElement(
-                'th',
-                null,
-                'View Results'
-              )
-            )
-          ),
-          React.createElement(
-            'tbody',
-            null,
-            jobs
-          )
-        )
-      )
+      results
     );
   }
 });
@@ -188,8 +180,7 @@ var Job = React.createClass({
 
 module.exports.Jobs = Jobs;
 
-}).call(this,require('_process'))
-},{"_process":173,"react":172}],3:[function(require,module,exports){
+},{"react":172}],3:[function(require,module,exports){
 'use strict';
 
 module.exports = require('react/lib/ReactDOM');

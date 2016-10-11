@@ -61,16 +61,12 @@ var Jobs = React.createClass({
     });
   },
   render: function() {
+    var results = <h3>Submit a url to begin</h3>;
     var jobs = this.state.jobs.map(function(job) {
       return <Job key={job.key} url={job.url} status={job.status} ></Job>;
     });
-    if (!jobs.length) { jobs = <div><h3>Submit a url to begin</h3></div>; }
-
-    return (
-      <div>
-        <h1>Jobs</h1>
-        <JobCreator onCreate={this.onCreate}></JobCreator>
-        <div>
+    if (jobs.length) {
+      results = (
         <table>
           <thead>
             <tr>
@@ -83,7 +79,14 @@ var Jobs = React.createClass({
             {jobs}
           </tbody>
         </table>
-        </div>
+      )
+    }
+
+    return (
+      <div>
+        <h1>Jobs</h1>
+        <JobCreator onCreate={this.onCreate}></JobCreator>
+        {results}
       </div>
     );
   }
@@ -91,7 +94,6 @@ var Jobs = React.createClass({
 
 var Job = React.createClass({
   render: function() {
-    console.log('job status='+this.props.status);
     var href = "/jobs?url="+this.props.url
     var result_link = (['Success','Error'].indexOf(this.props.status) != -1) ?
       (<a href={href}>View Results</a>) :
